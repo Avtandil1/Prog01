@@ -1,20 +1,24 @@
 import processing.core.PApplet;
 
-
-
 import javax.swing.*;
 
 
 
-public class Main extends PApplet {
+publicimport processing.core.PApplet; class Main extends PApplet {
 
 
 
-    float v = 0;
+    static float n;
 
-    float e = 0;
 
-    float m = 0;
+
+    float v = 600 / n;
+
+
+
+    float[][] x = new float[(int)n][(int)n];
+
+    float[][] y = new float[(int)n][(int)n];
 
 
 
@@ -22,85 +26,67 @@ public class Main extends PApplet {
 
         fullScreen();
 
-
-
     }
 
 
 
     public void setup() {
 
-        noStroke();
+        stroke(255);
 
     }
 
 
 
-
-
     public void draw() {
 
-        fill(0, 100);
-
-        rect(0, 0, width, height);
+        background(0);
 
 
 
-        fill(255, 250, 0);
+        translate(500, 300);
 
-        translate(width / 2, height / 2);
+        fill(0);
 
-        ellipse(0, 0, 100, 100);
-
-
-
-        pushMatrix();
-
-        rotate(v);
-
-        fill(0, 255, 255);
-
-        translate(90, 90);
-
-        ellipse(0, 0, 50, 50);
-
-        popMatrix();
+        rect(0, 0, 600, 600);
 
 
 
-        rotate(e);
+        for (int j = 0; j < n; j++) {
 
-        fill(0, 0, 255);
+            for (int i = 0; i < n; i++) {
 
-        translate(200, 200);
+                fill(255);
 
-        ellipse(0, 0, 51, 51);
+                rect(x[j][i], y[j][i], v, v);
 
+                if (j % 2 == 0 && i % 2 == 0) {
 
+                    x[j][i] = j * v;
 
-        rotate(m);
+                    y[j][i] = i * v;
 
-        fill(225);
+                }
 
-        translate(30, 30);
+                if (j % 2 != 0 && i % 2 != 0) {
 
-        ellipse(0, 0, 25, 25);
+                    x[j][i] = i * v;
 
+                    y[j][i] = j * v;
 
+                }
 
-        v += 0.1;
+            }
 
-        e += 0.01;
-
-        m += 0.02;
-
-
+        }
 
     }
 
 
 
     public static void main(String... args) {
+
+        n = Float.parseFloat(JOptionPane.showInputDialog("N: "));
 
         PApplet.main("Main");
 
