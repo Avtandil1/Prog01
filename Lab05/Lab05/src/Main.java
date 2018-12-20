@@ -11,25 +11,24 @@ public class Main extends PApplet {
     }
 
     public void setup() {
-        frameRate(1);
+
     }
 
 
     public void draw() {
         background(0);
 
-        for (int i = 0; i < n; ++i) {
-            float x = random(width);
-            float y = random(height);
-            float r = random(10,50);
-            float rc = random(255);
-            float gc = random(255);
-            float bc = random(255);
-            fill(rc, gc, bc);
-            ellipse(x, y, 2 * r, 2 * r);
-        }
+        float r = Math.min(width, height) / 2;
+        float dr = r / n;
+        float c = 5;
+        float dc = (255 - c) / n;
 
-        noLoop();
+        for (int i = 0; i < n; ++i) {
+            fill(c, 0, 0);
+            ellipse(width / 2, height / 2, 2 * r, 2 * r);
+            r -= dr;
+            c += dc;
+        }
     }
 
     public static void main(String... args) {
@@ -37,3 +36,8 @@ public class Main extends PApplet {
         PApplet.main("Main");
     }
 }
+
+
+
+
+
